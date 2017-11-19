@@ -52,7 +52,7 @@ def login():
 
 		if(u in lista_usuarios):
 			if(p in lista_contrasenas):
-				if(lista_usuarios.index(n) == lista_contrasenas.index(c)):
+				if(lista_usuarios.index(u) == lista_contrasenas.index(p)):
 					return render_template('mainpage.html')
 				else:
 					return render_template('denegado.html')
