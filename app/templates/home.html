@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+	<div class="jumbotron text-center">
+		<h1 style="color:#000000";>¡Bienvenido OniiChan!</h1>
+	</div>
+	<div>
+		<img src="https://image.ibb.co/fXxHgG/iconologo.jpg" title="United Chat" height="400" width="400" align="left" style="float:left; margin:10px"/>
+	</div>
+	<form method="POST" action="/">
+		<div class="form-group" align="center">
+			<br/>
+			<br/>
+			<h1 style="color:#FFFFFF";>INICIA SESIÓN</h1>
+			<h2 style="color:#FFFFFF"><font size="3">Usuario:</font></h2>
+				<p><input type="text" maxlength="25" minlength="5" name="USUARIO" required=""></p>
+			<h3 style="color:#FFFFFF"><font size="3">Contraseña:</font></h3>
+				<p><input type="password" maxlength="25" minlength="3" name="CONTRASEÑA" required=""></p>
+				<br/>
+				<br/>
+			<p><input type="submit" class="btn bbtn-primary" value="Entrar"></p>
+		</div>
+	</form>
+{% endblock %}
