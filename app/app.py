@@ -3,7 +3,7 @@ from flask_socketio import *
 
 app = Flask(__name__)
 app.debug = True
-app.config.update(DEBUG = True, SECRET_KEY = '696969', USERNAME='Admin', PASSWORD='23ll')
+app.config.update(DEBUG = True, SECRET_KEY = 'Torres911', USERNAME='torRent', PASSWORD='puj2017')
 io = SocketIO(app)
 namespace = "/fsic"
 
@@ -100,28 +100,29 @@ def registrarse():
 		p2 = request.form['CONTRASEÑANUEVAREP']
 		lista_usuarios = []
 		lista_contrasenas = []
-		if(p1 == p2):
-			lista_usuarios.append(un)
-			lista_contrasenas.append(p1)
-			def archivos():
-				a = open("usuarios.txt","r")
-				texto = a.readlines()
-				a.close()
-				a = open("usuarios.txt", "a")
-				a.write("\n" + str(un))
-				a.close()
+		if(un not in lista_usuarios):
+			if(p1 == p2):
+				lista_usuarios.append(un)
+				lista_contrasenas.append(p1)
+				def archivos():
+					a = open("usuarios.txt","r")
+					texto = a.readlines()
+					a.close()
+					a = open("usuarios.txt", "a")
+					a.write("\n" + str(un))
+					a.close()
 
-				b = open("contrasenas.txt","r")
-				texto2 = b.readlines()
-				b.close()
-				b = open("contrasenas.txt", "a")
-				b.write("\n" + str(p1))
-				b.close()
+					b = open("contrasenas.txt","r")
+					texto2 = b.readlines()
+					b.close()
+					b = open("contrasenas.txt", "a")
+					b.write("\n" + str(p1))
+					b.close()
 
-			archivos()
-			return render_template('home.html')
-		else:
-			return render_template('denegado.html')
+				archivos()
+				return render_template('home.html')
+			else:
+				return render_template('denegado.html')
 	return render_template('register.html')
 
 if __name__ == "__main__":
