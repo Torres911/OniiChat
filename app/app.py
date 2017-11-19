@@ -2,9 +2,30 @@ from flask import *
 from flask_socketio import *
 
 app = Flask(__name__)
+app.debug = True
+app.config.update(DEBUG = True, SECRET_KEY = '696969', USERNAME='Admin', PASSWORD='23ll')
+io = SocketIO(app)
+namespace = "/fsic"
+
+
+
+@io.on("connect", namespace=namespace)
+def conectar():
+    print("El cliente esta conectado")
+
+
+@io.on("disconnect", namespace=namespace)
+def desconectar():
+    print("El cliente esta desconectado")
+
+@io.on("new-message", namespace=namespace)
+def nuevo_mensaje(message):
+    print("Ha llegado un nuevo mensaje {!r}".format(message))
+
+    io.emit("new-message", message, namespace=namespace)
+
 
 @app.route('/', methods=['GET', 'POST'])
-
 def login():
 	"""
 	Entrada: La informacion introducida por el usuario para iniciar sesion en los inputs
@@ -104,4 +125,4 @@ def registrarse():
 	return render_template('register.html')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    io.run(app)
