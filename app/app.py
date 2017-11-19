@@ -50,8 +50,8 @@ def login():
 			if('\n' in item2):
 				lista_contrasenas[lista_contrasenas.index(item2)] = item2.replace('\n', '')
 
-		if(n in lista_usuarios):
-			if(c in lista_contrasenas):
+		if(u in lista_usuarios):
+			if(p in lista_contrasenas):
 				if(lista_usuarios.index(n) == lista_contrasenas.index(c)):
 					return render_template('mainpage.html')
 				else:
