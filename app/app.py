@@ -26,10 +26,10 @@ def login():
 		texto = f.readlines()
 		f.close()
 
-		i = 0
-		while(i < len(texto)):
-			frase = texto[i]
-			i = i + 1
+		temp = 0
+		while(temp < len(texto)):
+			frase = texto[temp]
+			temp += 1
 			lista_usuarios = lista_usuarios + frase.split(" ")
 
 		for item in lista_usuarios:
@@ -40,10 +40,10 @@ def login():
 		texto2 = f2.readlines()
 		f2.close()
 
-		i2 = 0
-		while(i2 < len(texto2)):
-			frase2 = texto2[i2]
-			i2 = i2 + 1
+		temp2 = 0
+		while(temp2 < len(texto2)):
+			frase2 = texto2[temp2]
+			temp2 += 1
 			lista_contrasenas = lista_contrasenas + frase2.split(" ")
 
 		for item2 in lista_contrasenas:
