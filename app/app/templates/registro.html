@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html Lang="es">
-	<head>
+<head>
 		<meta charset="utf-8">
 		<title>OniiChat</title>
 		<link type="image/x-icon" href="https://image.ibb.co/cOHY06/Oniichat.png" rel="icon">
@@ -15,33 +15,25 @@
 		</div>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<!--Codigo libre tomado de http://getbootstrap.com/-->
-	</body>
-	<div class="jumbotron text-center" style="background-color:#121C87">
-	<h1 style="color:#18D6E0";>¡Bienvenido OniiChan  | >ÜwÜ<|!</h1>
-	</div>
 	<div>
 		<img src="https://image.ibb.co/cOHY06/Oniichat.png" title="OniiChat" height="350" width="350" align="left-center" style="float:left; margin:200px"/>
 	</div>
-	<form method="POST" action="/">
+	<form method="POST" action="/registro">
 		<div class="form-group" align="center" style="float:right; margin-right: 200px ">
-			<br/>
-			<br/>
-			<h1 style="color:#067D10";>Inicia Sesión</h1>
-			<h1 style="color:#067D10";>Oniichan</h1>
 			<br>
-			<h2 style="color:#000000><font size="1">Usuario:</font></h2>
-				<p><input type="text" maxlength="25" minlength="5" name="USUARIO"></p>
-			<h3 style="color:#000000><font size="1">Contraseña:</font></h3>
-				<p><input type="password" maxlength="25" minlength="3" name="CONTRASEÑA"></p>
+			<br>
+			<h1 style="color:#067D10";>Registrate</h1>
+			<h1 style="color:#067D10";>Nuevo Oniichan</h1>
+			<br>
+			<h2 style="color:#000000"><font size="3">Usuario:</font></h2>
+				<p><input type="text" maxlength="25" minlength="5" name="USUARIONUEVO"></p>
+			<h3 style="color:#000000"><font size="3">Contraseña:</font></h3>
+				<p><input type="password" maxlength="25" minlength="3" name="CONTRASENANUEVA"></p>
+				<br>
+			<h4 style="color:#000000"><font size="3">Confirma tu Contraseña:</font></h4>
+				<p><input type="password" maxlength="25" minlength="3" name="CONTRASENANUEVAREP"></p>
 				<br/>
-				<br/>
-			<p><input type="submit" class="btn bbtn-primary" value="Entrar"></p>
-			<br>
-			<br>
-			<br>
-			<a href = "/registro">
-				<input type= "button" value="REGISTRARSE">
-			</a>			
+				<p><input type="submit" class="btn bbtn-primary" value="REGISTRARSE"></p>
 		</div>
 	</form>
 </html>

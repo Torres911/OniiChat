@@ -5,14 +5,24 @@ app = Flask(__name__)
 app.debug = True
 app.config.update(DEBUG = True, SECRET_KEY = 'Torres911', USERNAME='torRent', PASSWORD='puj2017')
 chat = SocketIO(app)
-namespace = "/senpai"
+room = "/senpai"
 
 
-@chat.on("new-message", namespace=namespace)
+
+@chat.on("connect", room=room)
+def conectar():
+    print("OniiChan estas conectado ÜwÜ")
+
+
+@chat.on("disconnect", room=room)
+def desconectar():
+    print("Adios Onichan q.q")
+
+@chat.on("new-message", room=room)
 def nuevo_mensaje(message):
     print("Ha llegado un nuevo mensaje {!r}".format(message))
 
-    chat.emit("new-message", message, namespace=namespace)
+    chat.emit("new-message", message, room=room)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -33,32 +43,29 @@ def entrarChat():
 		lista_usuarios = []
 		lista_contrasenas = []
 
-		#Funcion para separar la informacion del Username
 		y = open("usuarios.txt", "r")
-		user = y.readlines()
+		linea = y.readlines()
 		y.close()
 
-		tU = 0
-		while(tU < len(user)):
-			palabra = user[tU]
-			tU += 1
-			lista_usuarios = lista_usuarios + palabra.split(" ")
+		temp = 0
+		while(temp < len(linea)):
+			frase = linea[temp]
+			temp += 1
+			lista_usuarios = lista_usuarios + frase.split(" ")
 
-		for espacio in lista_usuarios:
-			if('\n' in espacio):
-				lista_usuarios[lista_usuarios.index(espacio)] = espacio.replace('\n', '')
+		for item in lista_usuarios:
+			if('\n' in item):
+				lista_usuarios[lista_usuarios.index(item)] = item.replace('\n', '')
 
-		
-		#Funcion para separar las contraseñas
 		t = open("contrasenas.txt", "r")
 		contras = t.readlines()
 		t.close()
 
 		z = 0
 		while(z < len(contras)):
-			palabra = contras[z]
+			frase2 = contras[z]
 			z += 1
-			lista_contrasenas = lista_contrasenas + palabra.split(" ")
+			lista_contrasenas = lista_contrasenas + frase2.split(" ")
 
 		for c in lista_contrasenas:
 			if('\n' in c):
@@ -74,42 +81,35 @@ def entrarChat():
 				return render_template('denegado.html')
 		else:
 			return render_template('inicio.html')
-
 	return render_template('inicio.html')
-
-		
-@app.route('/registro', methods=['GET', 'POST'])
-def registros():	
+	
+def usuariosNuevos():
+	"""
+	Esta funcion agrega los datos de inicio de sesión a la lista de datos.
+	"""
 	if(request.method == 'POST'):
-		#Registro Usuarios Nuevos
+		#lista_u = []
+		#lista_c = []
 		un = request.form['USUARIONUEVO']
-		p1 = request.form['CONTRASENANUEVA']
-		p2 = request.form['CONTRASENANUEVAREP']
-		lista_u = []
-		lista_p = []
+		p1 = request.form['CONTRASEÑANUEVA']
+		p2 = request.form['CONTRASEÑANUEVAREP']
 		if(p1 == p2):
-			lista_u.append(un)
-			lista_p.append(p1)
-			def tester():
-				l = open("usuarios.txt", "r")
-				test = l.readlines()
-				l.close()
+			#lista_u.append(un)
+			#lista_c.append(p1)
+			def agregarINFOArchivos():
 				a = open("usuarios.txt", "a")
-				a.write("\n" + str(un))
+				a.write(str(un) + '\n')
 				a.close()
 
-				e = open("usuarios.txt", "r")
-				test2 = e.readlines()
-				e.close()
 				b = open("contrasenas.txt", "a")
-				b.write("\n" + str(p1))
+				b.write(str(p1) + '\n')
 				b.close()
-			tester()
 
+			agregarINFOArchivos()
 			return render_template('inicio.html')
 		else:
 			return render_template('denegado.html')
-	return render_template('registro.html')
+	return render_template('inicio.html')
 
 
 @app.route('/sobreproyecto')

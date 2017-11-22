@@ -11,20 +11,20 @@ $(document).ready(function () {
     });
 
     socket.on("new-message", function(message) {
-        $("#chat-output").append(
+        $("#coutput").append(
             "<div>" + message + "</div>"
         );
 
-        $("#chat-output").scrollTop($("#chat-output")[0].scrollHeight);
+        $("#coutput").scrollTop($("#coutput")[0].scrollHeight);
     });
 
     $("#clear-button").on("click", function () {
-        $("#chat-input").val("");
+        $("#cinput").val("");
     });
 
     $("#chat-form").on("submit", function () {
-        socket.emit("new-message", $("#chat-input").val());
-        $("#chat-input").val("");
+        socket.emit("new-message", $("#cinput").val());
+        $("#cinput").val("");
         return false;
     });
 
